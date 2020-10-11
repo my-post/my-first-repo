@@ -1,0 +1,38 @@
+#define size 10
+#include <stdio.h>
+int a[size],top=-1;
+int pop();void push(int);void print();
+
+void main()
+{
+	int ele,r;
+	print();
+}
+void push(int ele)
+{
+	if(top==size-1)
+		{
+			printf("list is full");return;
+		}
+	else
+		{top++;
+	a[top]=ele;
+	return;
+}}
+int pop()
+{int f;
+	if(top==-1)
+	{
+		printf("list is empty");return;
+	}
+	else
+		return(a[top--]);
+}
+void print()
+{int i;
+	if(top==-1)
+		{printf("list is empty\n");return;}
+	for(i=0;i<=top;i++)
+	{
+		printf("%d\n",a[i]);}
+}
