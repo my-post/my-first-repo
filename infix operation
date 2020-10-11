@@ -1,0 +1,117 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+struct ll
+{
+	char data;
+	struct ll *link;
+};
+int pr(char,char);
+void infix(struct ll **,char *);
+char pop(struct ll **);
+char peek(struct ll *);
+int empty(struct ll *);
+void push(struct ll **,char);
+int check(char ,char );
+void main()
+{
+	char a[34];struct ll *head=NULL;
+	printf("enter infix\n");
+	scanf("%s",a);
+	infix(&head,a);
+}
+void infix(struct ll **head,char *a)
+{
+	int i=0,n,r;
+	n=strlen(a);
+	int j=0;
+	char *w=(char *)malloc(n*sizeof(char));
+	while(a[i]!='\0')
+	{
+		if(a[i]<='9' && a[i]>='0')
+		{
+			w[j]=a[i];j++;
+			i++;
+		}
+		else
+			if(a[i]=='}'||a[i]==']'||a[i]==')')
+			{
+				r=pop(head);
+				while(check(r,a[i])==0)
+				{
+					
+					w[j]=r;
+					j++;r=pop(head);
+				}
+			i++;
+			}
+			else
+				{
+					{
+						while(*head!=NULL && (pr(peek(*head),a[i]))==1)
+					{
+						w[j]=pop(head);
+						j++;
+					}
+					push(head,a[i]);i++;
+					}
+				}
+}
+			while(empty(*head)==1)
+			{
+				w[j]=pop(head);j++;
+			}
+			printf("%s",w);
+}
+char pop(struct ll **head)
+{
+	char f;struct ll *d;
+	if(*head==NULL)
+	{
+		printf("brown");
+		exit(1);
+	}
+	else
+		{
+			d=*head;f=(*head)->data;
+		*head=(*head)->link;free(d);return f;
+	}
+}				
+void push(struct ll **head,char ele)
+{
+	struct ll *new=(struct ll *)malloc(sizeof(struct ll));
+	new->link=*head;
+	*head=new;
+	new->data=ele;
+}
+int empty(struct ll *head)
+{
+	if(head==NULL)
+		return 0;else return 1;
+}
+char peek(struct ll *head)
+{
+	if(head==NULL){printf("white");return 0;}else
+	return((head)->data);
+}
+int pr(char p,char a)
+{
+	if(p=='*'||p=='/')
+		if(a=='+'||a=='-'||a=='/'||a=='*')
+			return 1;
+		else return 0;
+	if(p=='+'||p=='-')
+		if(a=='+'||a=='-')
+			return 1;
+		else return 0;
+	else return 0;	
+}
+int check(char r,char a)
+{
+switch(a)
+{case '}':
+if(r=='{')return 1;
+else return 0;break;
+case ']':if(r=='[')return 1;else return 0;break;
+case ')':if(r=='(')return 1;else return 0;break;
+}}
