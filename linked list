@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct ll
+	{
+	int data;
+	struct ll* link;
+	};
+int empty(struct ll *);
+void push(struct ll **);
+int pop(struct ll **);
+int top(struct ll *);
+void main()
+	{
+		struct ll *head;int r;head=NULL;int s;
+		while(1)
+		{
+		printf("enter 1 to push\n");printf("enter 2 to pop\n");printf("enter 3 to check last entry\n");printf("enter 4 to check list is empty or not\n");
+		scanf("%d",&r);
+
+		switch(r)
+		{
+		case 1:push(&head);break;
+		case 2: s=pop(&head);printf("%d\n",s);break;
+		case 3:s=top(head);printf("%d\n",s);break;
+		case 4:s=empty(head);
+ 			if(s==1)
+			printf("list is not empty\n");
+			else 
+			printf("list is empty\n");
+		}
+		}	
+	}
+void push(struct ll **head)
+	{
+		struct ll *new;
+		int d;
+		new=(struct ll*)malloc(sizeof(struct ll));
+		printf("enter data\n");
+		scanf("%d",&(new->data));
+		new->link=*head;
+		*head=new;
+	}
+int pop(struct ll **head)
+	{
+	struct ll *temp;
+	if(*head==NULL)
+	{printf("list is empty");
+	return 0;}
+	else
+	{temp=*head;
+	*head=(*head)->link;
+	return(temp->data);}
+	}
+int top(struct ll *head)
+	{
+	if(head==NULL)
+	{printf("list is empty\n");
+	return 0;}
+	else
+	return(head->data);
+	}
+int empty(struct ll *head)
+	{
+		if(head==NULL)
+		return 0;
+		else
+		return 1;
+	}
+
+	
+				
+					
+					
