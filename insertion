@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+	int data;
+	struct node *link;
+};
+void createlist(int,struct node **);
+void t(struct node*);
+void  createlist(int n,struct node **head)
+{
+	int j,i;
+	struct node *end;
+	
+	for(i=0;i<n;i++)
+	{
+		struct node *temp=(struct node*) malloc(sizeof(struct node));
+		printf("enter data");
+		scanf("%d",&(temp->data));
+		temp->link=NULL;
+		if(*head==NULL)
+		{
+			*head=temp;
+			end =temp;
+		}
+		else
+		{
+			end->link=temp;
+			end=temp;
+				
+		}
+	}
+
+}
+void main()
+{
+	struct node *end,*head=NULL,*temp;
+	int n;
+
+	printf("enter the no. of node in list");
+	scanf("%d",&n);
+	createlist(n,&head);
+	t(head);
+}
+void  t(struct node *p)
+{
+		if(p==NULL)
+		printf("list is empty");
+		else
+		{
+			printf("HEAD");
+			while(p!=NULL)
+			{	
+			printf("%d->",p->data);
+			p=p->link;
+		}
+	printf("NULL");
+}
+}
