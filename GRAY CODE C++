@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+#include<string.h>
+using namespace std;
+
+int main()
+{
+string s;
+string f;int count=0;
+cin >> s;
+cin >> f;
+if(s.length()!=f.length())
+{cout << "length mismatch";return 0;}
+for(int i=0;i<s.length();i++)
+{
+    if(count>1)
+    break;
+    if(s.at(i)!=f.at(i))
+    count++;
+}
+
+if(count!=1)
+cout << "incorrect";
+else
+cout <<"correct";
+return 0;
+
+}
